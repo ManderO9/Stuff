@@ -1,0 +1,32 @@
+﻿@page "/"
+@namespace Stuff
+@inject IProductDataAccess productDataAccess
+
+<PageTitle>STUFF</PageTitle>
+
+<div>
+    
+    @if (mProducts is null)
+    {
+        <p>loading data...</p>
+    }
+    else
+    {
+        foreach (var product in mProducts)
+        {
+
+            <div class="product-element">
+                <img class="product-image" src="@product.ImageLink" alt="@product.ImageAltText">
+                <div class="product-info">
+                    <span class="product-name">@product.Name</span>
+                    <span class="product-price">price: @product.Price </span>
+                </div>
+                <div class="more-details">
+                    <button class="more-details-button">more details</button>
+                </div>
+            </div>
+
+        }
+    }
+</div>
+
