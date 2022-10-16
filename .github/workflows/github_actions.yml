@@ -19,9 +19,12 @@ jobs:
         dotnet-version: 6.0.x
         
     # publishes project to the release folder
-    
     - name: Publish .Net Core Project
       run: dotnet publish Stuff/Stuff.csproj -c Release -o release --nologo
+    
+    # changes the base-tag in index.html from '/' to 'Stuff' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to Stuff
+      run: sed -i 's/<base href="\/" \/>/<base href="\/Stuff\/" \/>/g' release/wwwroot/index.html
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
