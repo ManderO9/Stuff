@@ -21,7 +21,7 @@ jobs:
     # publishes project to the release folder
     
     - name: Publish .Net Core Project
-      run: dotnet publish Stuff.csproj -c Release -o release --nologo
+      run: dotnet publish Stuff/Stuff.csproj -c Release -o release --nologo
       
     - name: Commit wwwroot to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@3.7.1
