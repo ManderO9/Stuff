@@ -8,22 +8,38 @@
     
     @if (mProducts is null)
     {
-        <p>loading data...</p>
+        <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">loading data...</div>
     }
     else
     {
         foreach (var product in mProducts)
         {
+            <!-- The product element -->
+            <div class=" m-0 p-0"
+                style="border-color: var(--secondary) !important;">
 
-            <div class="product-element">
-                <img class="product-image" src="@product.ImageLink" alt="@product.ImageAltText">
-                <div class="product-info">
-                    <span class="product-name">@product.Name</span>
-                    <span class="product-price">price: @product.Price </span>
+                <!-- The image of the product-->
+                <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block">
+                    <img class="w-100" src="@product.ImageLink" alt="@product.ImageAltText">
                 </div>
-                <div class="more-details">
-                    <button class="more-details-button">more details</button>
+
+                <div class="m-0 p-0 col-sm-12 col-lg-7 d-inline-block w-100">
+                    <!-- The name and the price of the product -->
+                    <div class="d-flex justify-content-between p-4">
+                        <span class="overflow-hidden text-truncate w-50">@product.Name</span>
+                        <span>price: @product.Price @product.GetDisplayPriceUnit() </span>
+                    </div>
+
+                    <!-- More details button -->
+                    <div class="d-flex flex-row-reverse me-2 mt-2">
+                        <p class="btn "
+                           style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">more details</p>
+                    </div>
+
                 </div>
+
+        
+                <hr style="background-color:dimgray; height:4px;" class="mx-3 my-4 rounded rounded-3">
             </div>
 
         }

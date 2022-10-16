@@ -32,6 +32,8 @@
 
 
 
+
+
 /* reset styles for the app */
 
 /*
@@ -82,8 +84,21 @@ p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
 }
 
+/* declare global variables */
+:root {
+    --primary: #eee3fa;
+    --background: #160926;
+    --secondary: #9036ff;
+}
+
 /* Make it dark theme by default */
 * {
-    color: #eee3fa;
-    background-color: #160926;
+    color: var(--primary);
+    background-color: var(--background);
 }
+
+
+.button-shadow{
+    box-shadow:0px 0px 10px 3px var(--secondary);
+}
+

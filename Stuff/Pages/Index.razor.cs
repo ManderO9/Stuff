@@ -12,6 +12,8 @@ namespace Stuff
 
         protected override async Task OnInitializedAsync()
         {
+            // TODO: add lazy loading
+
             // Get the list of products
             mProducts = await productDataAccess.GetProducts();
         }

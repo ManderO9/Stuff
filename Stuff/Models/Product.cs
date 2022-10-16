@@ -5,6 +5,8 @@
     /// </summary>
     public class Product
     {
+        #region Public Properties
+
         /// <summary>
         /// The name of the product
         /// </summary>
@@ -34,6 +36,35 @@
         /// Alternative text to display to the user if we didn't find the display image
         /// </summary>
         public string ImageAltText { get; set; }
+
+        #endregion
+
+        #region Public Methods
+
+        /// <summary>
+        /// Returns a displayable string for the price unit
+        /// </summary>
+        /// <returns></returns>
+        public string GetDisplayPriceUnit()
+        {
+            // Switch the price unit
+            switch (PriceUnit)
+            {
+                // If it's dollars
+                case PriceUnit.Dollar:
+                    return "$";
+
+                // If it's dinnars
+                case PriceUnit.Dinnar:
+                    return "DZD";
+            }
+
+            // If no match, return an empty string
+            return "";
+        }
+
+        #endregion
+
     }
 
 }

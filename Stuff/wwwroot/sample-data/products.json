@@ -4,7 +4,7 @@
     "Description": "description for the product man",
     "Price": 23.1,
     "PriceUnit": 0,
-    "ImageLink": "./favicon.ico",
+    "ImageLink": "./Images/red-forest.jpg",
     "ImageAltText": "some image"
   },
   {
@@ -12,7 +12,7 @@
     "Description": "description for the product man",
     "Price": 263.1,
     "PriceUnit": 0,
-    "ImageLink": "./favicon.ico",
+    "ImageLink": "./Images/red-forest.jpg",
     "ImageAltText": "some image"
   },
   {
@@ -20,7 +20,7 @@
     "Description": "description for the product man",
     "Price": 3.1,
     "PriceUnit": 0,
-    "ImageLink": "./favicon.ico",
+    "ImageLink": "./Images/red-forest.jpg",
     "ImageAltText": "some image"
   },
   {
