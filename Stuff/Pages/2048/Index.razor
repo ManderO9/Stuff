@@ -1,0 +1,46 @@
+﻿@page "/2048"
+
+<div class="vw-100 vh-100 d-flex justify-content-center align-items-center" >
+
+    <input @ref="KeyboardReader" 
+           style="position:absolute; width:30px;height:30px; opacity:0; top:0px; left:0px;"
+                  @onkeydown="async (e)=>{await KeyPressed(e.Key);}" />
+
+    <div>
+        <h1 class="block">2048</h1>
+        <p class="block">swipe left, right, top and bottom to play</p>
+
+        <div>
+            @for (var row = 0; row < 4; row++)
+            {
+                for (var column = 0; column < 4; column++)
+                {
+
+                    if (mGridItems[GetIndex(row, column)].Populated)
+                    {
+                        <div style="background-color: @GetColor(mGridItems[GetIndex(row,column)].Value); width:70px; height:70px;" class="m-1 d-inline-block">
+                            <div class="d-flex justify-content-center bg-transparent h-100 align-items-center text-black">
+                                @mGridItems[GetIndex(row,column)].Value
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div style="background-color:white; width:70px; height:70px;" class="m-1 d-inline-block">
+                            <div class="d-flex justify-content-center bg-transparent h-100 align-items-center">
+                                &nbsp;
+                            </div>
+                        </div>
+                    }
+
+                }
+                <br />
+            }
+        </div>
+    </div>
+</div>
+
+
+
+
+
