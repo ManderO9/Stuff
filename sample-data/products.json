@@ -1,0 +1,42 @@
+﻿[
+  {
+    "Name": "product1",
+    "Description": "description for the product man",
+    "Price": 23.1,
+    "PriceUnit": 0,
+    "ImageLink": "./Images/red-forest.jpg",
+    "ImageAltText": "some image"
+  },
+  {
+    "Name": "product2",
+    "Description": "description for the product man",
+    "Price": 263.1,
+    "PriceUnit": 0,
+    "ImageLink": "./Images/red-forest.jpg",
+    "ImageAltText": "some image"
+  },
+  {
+    "Name": "product name that could be long",
+    "Description": "description for the product man",
+    "Price": 3.1,
+    "PriceUnit": 0,
+    "ImageLink": "./Images/red-forest.jpg",
+    "ImageAltText": "some image"
+  },
+  {
+    "Name": "product4",
+    "Description": "description for the product man",
+    "Price": 223.1,
+    "PriceUnit": 0,
+    "ImageLink": "./favicon.ico",
+    "ImageAltText": "some image"
+  },
+  {
+    "Name": "product5",
+    "Description": "description for the product man",
+    "Price": 2331.1,
+    "PriceUnit": 0,
+    "ImageLink": "./favicon.ico",
+    "ImageAltText": "some image"
+  }
+]
