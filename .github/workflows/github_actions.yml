@@ -1,37 +1,38 @@
-name: DeployToGitHubPages
-env:
-  PUBLISH_DIR: release/wwwroot
+name: deploy to Github Pages
 
-# Controls when the action will run
 on:
   push:
-    branches: [ main ]
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
-  build:
+  deploy-to-github-pages:
+
     runs-on: ubuntu-latest
+
     steps:
     - uses: actions/checkout@v3
-    
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 6.0.x
-
-    - name: Publish app
+        
+    # publishes project to the release folder
+    - name: Publish .Net Core Project
       run: dotnet publish Stuff/Stuff.csproj -c Release -o release --nologo
-
-    - name: Rewrite base href
-      uses: SteveSandersonMS/ghaction-rewrite-base-href@v1
+    
+    # changes the base-tag in index.html from '/' to 'Stuff' to match GitHub Pages repository subdirectory
+    - name: Change base-tag in index.html from / to Stuff
+      run: sed -i 's/<base href="\/" \/>/<base href="\/Stuff\/" \/>/g' release/wwwroot/index.html
+     
+    # add .nojekyll file to tell GitHub pages to not treat this as a Jekyll project. (allow files and folders starting with an underscore) 
+    - name: Add .nojekyll file
+      run: touch release/wwwroot/.nojekyll
+     
+    - name: Commit wwwroot to GitHub Pages
+      uses: JamesIves/github-pages-deploy-action@3.7.1
       with:
-        html_path: ${{ env.PUBLISH_DIR }}/index.html
-        base_href: /Stuff/
-
-    - name: GitHub Pages
-      if: success()
-      uses: crazy-max/ghaction-github-pages@v1.5.1
-      with:
-        target_branch: gh-pages
-        build_dir: ${{ env.PUBLISH_DIR }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUb_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: release/wwwroot
