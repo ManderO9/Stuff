@@ -1,6 +1,7 @@
 ﻿@page "/"
 @namespace Stuff
-@inject IProductDataAccess productDataAccess
+@using Stuff.Core
+@inject IAPIManager apiManager
 
 <PageTitle>STUFF</PageTitle>
 
@@ -15,15 +16,16 @@
         foreach (var product in mProducts)
         {
             <!-- The product element -->
-            <div class=" m-0 p-0"
-                style="border-color: var(--secondary) !important;">
+            <div class=" m-0 p-0 row">
 
                 <!-- The image of the product-->
                 <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block">
                     <img class="w-100" src="@product.ImageLink" alt="@product.ImageAltText">
+               
                 </div>
 
-                <div class="m-0 p-0 col-sm-12 col-lg-7 d-inline-block w-100">
+                <div class="m-0 p-0 col-sm-12 col-lg-8 d-inline-block">
+                    
                     <!-- The name and the price of the product -->
                     <div class="d-flex justify-content-between p-4">
                         <span class="overflow-hidden text-truncate w-50">@product.Name</span>
@@ -32,8 +34,7 @@
 
                     <!-- More details button -->
                     <div class="d-flex flex-row-reverse me-2 mt-2">
-                        <a class="btn "
-                           href="/ProductDetails"
+                        <a href="/ProductDetails" class="btn"
                            style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">more details</a>
                     </div>
 

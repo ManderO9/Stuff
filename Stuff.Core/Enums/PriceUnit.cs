@@ -1,4 +1,4 @@
-﻿namespace Stuff
+﻿namespace Stuff.Core
 {
     /// <summary>
     /// The unit of price for the product

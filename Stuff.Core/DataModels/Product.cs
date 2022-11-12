@@ -1,4 +1,4 @@
-﻿namespace Stuff
+﻿namespace Stuff.Core
 {
     /// <summary>
     /// The product that we can have in our app
@@ -6,6 +6,11 @@
     public class Product
     {
         #region Public Properties
+
+        /// <summary>
+        /// The unique identifier of this object
+        /// </summary>
+        public string Id { get; set; }
 
         /// <summary>
         /// The name of the product

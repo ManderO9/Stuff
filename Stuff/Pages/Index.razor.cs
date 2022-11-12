@@ -1,3 +1,5 @@
+using Stuff.Core;
+
 namespace Stuff
 {
     /// <summary>
@@ -15,7 +17,7 @@ namespace Stuff
             // TODO: add lazy loading
 
             // Get the list of products
-            mProducts = await productDataAccess.GetProducts();
+            mProducts = (await apiManager.GetProducts())?.Body;
         }
     }
 }
