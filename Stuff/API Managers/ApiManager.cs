@@ -38,7 +38,7 @@ namespace Stuff
             mHttpClient = httpClient;
 
             // Set the url to the server
-            mApiUrl = configuration.GetValue<string>("ServerAddress");
+            mApiUrl = configuration.GetValue<string>("ServerAddress") ?? "";
         }
 
         #endregion
@@ -46,8 +46,22 @@ namespace Stuff
         #region Public Methods
 
         public async Task<ApiResponse<List<Product>>?> GetProducts()
-            => await mHttpClient.GetFromJsonAsync<ApiResponse<List<Product>>>(mApiUrl + ApiRoutes.GetProductsList);
+        {
 
+            var request = new HttpRequestMessage(HttpMethod.Post, mApiUrl + ApiRoutes.GetProductsList);
+
+
+            var content = JsonSerializer.Serialize<ApiRequest<byte>>(new ApiRequest<byte>());
+
+            request.Content = new StringContent(content);
+
+            var response = await mHttpClient.SendAsync(request);
+            var output = await response.Content.ReadFromJsonAsync<ApiResponse<List<Product>>?>();
+
+
+
+            return output;
+        }
         public async Task<ApiResponse<Product>?> GetProduct(string id)
             => await mHttpClient.GetFromJsonAsync<ApiResponse<Product>?>(mApiUrl + ApiRoutes.GetProduct + $"/{id}");
 
@@ -67,7 +81,7 @@ namespace Stuff
             var result = await mHttpClient.SendAsync(request);
 
             // Get the content of the response
-            var content  = await result.Content.ReadAsStringAsync();
+            var content = await result.Content.ReadAsStringAsync();
 
             // Return the response
             return JsonSerializer.Deserialize<ApiResponse<Product>?>(content);

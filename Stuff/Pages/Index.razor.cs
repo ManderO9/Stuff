@@ -16,8 +16,14 @@ namespace Stuff
         {
             // TODO: add lazy loading
 
-            // Get the list of products
-            mProducts = (await apiManager.GetProducts())?.Body;
+            // Get the list of products from the server
+            var response = await apiManager.GetProducts();
+
+            // If there was a response and it was successful
+            if(response is not null && response.Successful)
+
+                // Set the list of products
+                mProducts = response.Body;
         }
     }
 }
