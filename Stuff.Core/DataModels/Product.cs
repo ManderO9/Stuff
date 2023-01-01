@@ -10,17 +10,17 @@
         /// <summary>
         /// The unique identifier of this object
         /// </summary>
-        public string Id { get; set; }
+        public required string Id { get; set; }
 
         /// <summary>
         /// The name of the product
         /// </summary>
-        public string Name { get; set; }
+        public required string Name { get; set; }
 
         /// <summary>
         /// The description of the product
         /// </summary>
-        public string Description { get; set; }
+        public required string Description { get; set; }
 
         /// <summary>
         /// The price of the product
@@ -35,12 +35,12 @@
         /// <summary>
         /// The lint to the image for the current product
         /// </summary>
-        public string ImageLink { get; set; }
+        public string? ImageLink { get; set; }
 
         /// <summary>
         /// Alternative text to display to the user if we didn't find the display image
         /// </summary>
-        public string ImageAltText { get; set; }
+        public string? ImageAltText { get; set; }
 
         #endregion
 

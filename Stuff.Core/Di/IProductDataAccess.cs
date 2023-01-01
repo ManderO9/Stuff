@@ -19,14 +19,14 @@
         Task<Product?> GetProduct(string id);
 
         /// <summary>
-        /// Updates a product in the database and returns a list of errors if any or null if none
+        /// Updates a product in the database and returns a list of errors if any or and empty list if none
         /// </summary>
         /// <param name="product">The product to update</param>
         /// <returns></returns>
-        Task<List<string>?> UpdateProduct(Product product);
+        Task<List<string>> UpdateProduct(Product product);
 
         /// <summary>
-        /// Creates a product in the database, returns a list of errors if any or null if nones
+        /// Creates a product in the database, returns a list of errors if any or an empty list if none
         /// </summary>
         /// <param name="product">The product to create</param>
         /// <returns></returns>
