@@ -79,7 +79,7 @@ namespace Stuff.Server
             return await mDbContext.Products.ToListAsync();
         }
 
-        public async Task<List<string>?> UpdateProduct(Product product)
+        public async Task<List<string>> UpdateProduct(Product product)
         {
             // If the product is null
             if (product == null)

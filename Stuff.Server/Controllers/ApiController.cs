@@ -80,7 +80,7 @@ public class ApiController : Controller
         var result = await mProductData.CreateProduct(request.Body);
 
         // If there were no errors            
-        if (result == null)
+        if (result.Count == 0)
             // Return success response
             return new ApiResponse<Product>() { Successful = true, Body = request.Body };
 
@@ -94,7 +94,7 @@ public class ApiController : Controller
     /// <param name="request">The API request</param>
     /// <returns></returns>
     [Route(ApiRoutes.GetProductsList)]
-    public async Task<ActionResult<ApiResponse<List<Product>?>>> GetProducts([FromBody] ApiRequest<byte> request)
+    public async Task<ActionResult<ApiResponse<List<Product>?>>> GetProducts([FromBody] ApiRequest request)
     {
         // TODO: Check the token
 
@@ -132,7 +132,7 @@ public class ApiController : Controller
         var result = await mProductData.UpdateProduct(request.Body);
 
         // If there was no errors
-        if (result == null)
+        if (result.Count == 0)
             // Return a success result
             return new ApiResponse<Product>() { Successful = true, Body = request.Body };
 
