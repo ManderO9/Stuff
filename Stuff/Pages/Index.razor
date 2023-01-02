@@ -1,19 +1,18 @@
-﻿@page "/"
+﻿@attribute [Route(ApplicationRoutes.HomePage)]
 @namespace Stuff
 @using Stuff.Core
+@using System.Net;
 @inject IAPIManager apiManager
 
-<PageTitle>STUFF</PageTitle>
-
 <div>
-    
-    @if (mProducts is null)
+
+    @if(mProducts is null)
     {
         <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">loading data...</div>
     }
     else
     {
-        foreach (var product in mProducts)
+        foreach(var product in mProducts)
         {
             <!-- The product element -->
             <div class=" m-0 p-0 row">
@@ -21,11 +20,11 @@
                 <!-- The image of the product-->
                 <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block">
                     <img class="w-100" src="@product.ImageLink" alt="@product.ImageAltText">
-               
+
                 </div>
 
                 <div class="m-0 p-0 col-sm-12 col-lg-8 d-inline-block">
-                    
+
                     <!-- The name and the price of the product -->
                     <div class="d-flex justify-content-between p-4">
                         <span class="overflow-hidden text-truncate w-50">@product.Name</span>
@@ -34,13 +33,14 @@
 
                     <!-- More details button -->
                     <div class="d-flex flex-row-reverse me-2 mt-2">
-                        <a href="/Stuff/ProductDetails" class="btn"
-                           style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">more details</a>
+                        <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.ProductDetailsPage + "/" + WebUtility.UrlEncode(product.Id))" class="btn"
+                          style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);"
+                        >more details</a>
                     </div>
 
                 </div>
 
-        
+
                 <hr style="background-color:dimgray; height:4px;" class="mx-3 my-4 rounded rounded-3">
             </div>
 

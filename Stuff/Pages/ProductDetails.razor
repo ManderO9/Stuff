@@ -1,4 +1,10 @@
-@page "/ProductDetails"
+@attribute [Route(ApplicationRoutes.ProductDetailsPage + "/{Id}")]
 
+<div class="vh-100 vw-100">the details page for a product that has the id: @Id
+    <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.HomePage)">back to home</a>
+</div>
 
-<div class="vh-100 vw-100">the details page for a product</div>
+@code {
+    [Parameter]
+    public string Id { get; set; }
+}
