@@ -45,7 +45,7 @@ namespace Stuff
 
 		#region Public Methods
 
-		public async Task<ApiResponse<List<Product>>?> GetProducts()
+		public async Task<ApiResponse<List<Product>>?> GetProductsAsync()
 		{
 			try
 			{
@@ -74,7 +74,7 @@ namespace Stuff
 			}
 		}
 
-		public async Task<ApiResponse<Product>?> GetProduct(string id)
+		public async Task<ApiResponse<Product>?> GetProductAsync(string id)
 		{
 			try
 			{
@@ -103,7 +103,7 @@ namespace Stuff
 			}
 		}
 
-		public async Task<ApiResponse<Product>?> UpdateProduct(Product product)
+		public async Task<ApiResponse<Product>?> UpdateProductAsync(Product product)
 		{
 
 
@@ -134,7 +134,7 @@ namespace Stuff
 			}
 		}
 
-		public Task<ApiResponse<Product>?> CreateProduct(Product product)
+		public Task<ApiResponse<Product>?> CreateProductAsync(Product product)
 		{
 			throw new NotImplementedException();
 		}

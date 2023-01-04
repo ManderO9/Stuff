@@ -1,10 +1,113 @@
+@using Stuff.Core;
 @attribute [Route(ApplicationRoutes.ProductDetailsPage + "/{Id}")]
+@inject IAPIManager apiManager
 
-<div class="vh-100 vw-100">the details page for a product that has the id: @Id
-    <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.HomePage)">back to home</a>
+<div class="vw-100 vh-100">
+    @if(Product is null && Errors.Count == 0)
+    {
+        <!-- Loading Data Text -->
+        <div>Loading data from the server</div>
+    }
+    else if(Product is null)
+    {
+        <!-- Errors list -->
+        <div>Errors!</div>
+        foreach(var error in Errors)
+        {
+            <div>@error</div>
+        }
+    }
+    else
+    {
+        <!-- The product element -->
+        <div class="m-0 p-3 row">
+
+            <!-- The image of the product -->
+            <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block" style="border:1px solid var(--secondary);">
+                <img class="w-100" src="@Product.ImageLink" alt="@Product.ImageAltText">
+            </div>
+
+            <div class="m-0 p-0 col-sm-12 col-lg-8 d-inline-block">
+
+                <!-- Product info -->
+                <div>
+                    <!-- Product name -->
+                    <div class="mt-3">Name: @Product.Name</div>
+
+                    <!-- Product price -->
+                    <div class="mt-3">Price: <span style="color: var(--accent);">@Product.Price @Product.GetDisplayPriceUnit()</span></div>
+
+                    <!-- Product description -->
+                    <div class="mt-3">Description:<br>@Product.Description</div>
+                </div>
+                <!-- Bottom buttons -->
+                <div class="d-flex justify-content-between my-3 p-0 mx-0">
+                    <!-- Back to home button -->
+                    <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.HomePage)"
+                   class="btn p-0 m-0"
+                   style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">
+                        Back To Home
+                    </a>
+                    <!-- Buy button -->
+                    <button class="btn py-1 px-3 m-0"
+                        style="
+                            background-color:var(--accent);
+                            box-shadow: 1px 1px 4px 1px var(--accent);
+                            color:var(--primary);
+                          ">
+                        Buy
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    }
+
 </div>
 
 @code {
+    /// <summary>
+    /// The id of the product to display in the page
+    /// </summary>
     [Parameter]
-    public string Id { get; set; }
+    public required string Id { get; set; }
+
+    /// <summary>
+    /// The product to display in the page
+    /// </summary>
+    public required Product Product { get; set; }
+
+    /// <summary>
+    /// The list of errors to display if we couldn't get the product
+    /// </summary>
+    public List<string> Errors { get; set; } = new List<string>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        // Try get the product from the store
+        var response = await apiManager.GetProductAsync(Id);
+
+        // If there was no response from the server
+        if(response == null)
+            // Add an error to the list of errors
+            Errors.Add("No response from the server");
+
+        // Otherwise, if we got an unsuccessful response
+        else if(!response.Successful)
+        {
+            // Add the received errors to the list of errors
+            Errors.AddRange(response.Errors!);
+        }
+
+        // Otherwise, we got a successful response
+        else
+        {
+            // Set the received product
+            Product = response.Body!;
+        }
+
+
+        await base.OnInitializedAsync();
+    }
 }

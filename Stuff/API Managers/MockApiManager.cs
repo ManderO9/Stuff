@@ -7,7 +7,7 @@ namespace Stuff;
 /// </summary>
 public class MockApiManager : IAPIManager
 {
-	public async Task<ApiResponse<Product>?> CreateProduct(Product product)
+	public async Task<ApiResponse<Product>?> CreateProductAsync(Product product)
 	{
 		await Task.Delay(0);
 		return new ApiResponse<Product>()
@@ -16,7 +16,7 @@ public class MockApiManager : IAPIManager
 			Body = product
 		};
 	}
-	public async Task<ApiResponse<Product>?> GetProduct(string id)
+	public async Task<ApiResponse<Product>?> GetProductAsync(string id)
 	{
 		await Task.Delay(0);
 		return new ApiResponse<Product>()
@@ -24,17 +24,17 @@ public class MockApiManager : IAPIManager
 			Successful = true,
 			Body = new Product()
 			{
-				Description = "description",
+				Description = "In their product descriptions, Innocent emphasizes the few elements that make their smoothies “great” and “healthy.”\r\n\r\nYou see, they even highlighted in green that their smoothie is, “a source of vitamins C, B2, B3 and B6 which can help reduce tiredness and fatigue…”\r\n\r\nNow that’s the kind of solid argument we’re talking about",
 				Id = id,
-				Name = "name",
-				Price = 4,
+				Name = "Viral social proof",
+				Price = 434,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&w=1000&q=80"
-			}
+				ImageLink = "/Images/mount-kilimanjaro.jpg"
+            }
 		};
 	}
-	public async Task<ApiResponse<List<Product>>?> GetProducts()
+	public async Task<ApiResponse<List<Product>>?> GetProductsAsync()
 	{
 		await Task.Delay(0);
 		var products = new List<Product>() {
@@ -42,12 +42,12 @@ public class MockApiManager : IAPIManager
 			{
 				Description = "description",
 				Id = "some id1",
-				Name = "name",
+				Name = "Addictive product suggestions",
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&w=1000&q=80"
-			},
+				ImageLink = "/Images/red-tree.jpg"
+            },
 			  new Product()
 			{
 				Description = "description",
@@ -56,8 +56,8 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&w=1000&q=80"
-			},
+				ImageLink = "/Images/sky.jpg"
+            },
 			   new Product()
 			{
 				Description = "description",
@@ -66,8 +66,8 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "https://www.junglescout.com/wp-content/uploads/2021/01/product-photo-water-bottle-hero.png"
-			},
+				ImageLink = "/Images/lave.jpg"
+            },
 				new Product()
 			{
 				Description = "description",
@@ -76,14 +76,14 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZHVjdHN8ZW58MHx8MHx8&w=1000&q=80"
+				ImageLink = "/Images/lave.jpg"
 
-			}
+            }
 		};
 
 		return new ApiResponse<List<Product>>() { Body = products, Successful = true };
 	}
-	public async Task<ApiResponse<Product>?> UpdateProduct(Product product)
+	public async Task<ApiResponse<Product>?> UpdateProductAsync(Product product)
 	{
 		await Task.Delay(0);
 		return new ApiResponse<Product>()

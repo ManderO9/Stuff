@@ -15,36 +15,57 @@
         foreach(var product in mProducts)
         {
             <!-- The product element -->
-            <div class=" m-0 p-0 row">
+            <div class="mx-0 mb-3 mt-0 p-0 row">
 
                 <!-- The image of the product-->
-                <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block">
+                <div class="m-0 p-0 col-sm-12 col-lg-4 d-inline-block" style="border:1px solid var(--secondary);">
                     <img class="w-100" src="@product.ImageLink" alt="@product.ImageAltText">
-
                 </div>
 
                 <div class="m-0 p-0 col-sm-12 col-lg-8 d-inline-block">
 
                     <!-- The name and the price of the product -->
-                    <div class="d-flex justify-content-between p-4">
-                        <span class="overflow-hidden text-truncate w-50">@product.Name</span>
-                        <span>price: @product.Price @product.GetDisplayPriceUnit() </span>
+                    <div class="p-2">
+                        <div class="overflow-hidden text-truncate w-50">@product.Name</div>
+                        <div>price: @product.Price @product.GetDisplayPriceUnit() </div>
                     </div>
 
                     <!-- More details button -->
                     <div class="d-flex flex-row-reverse me-2 mt-2">
                         <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.ProductDetailsPage + "/" + WebUtility.UrlEncode(product.Id))" class="btn"
-                          style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);"
-                        >more details</a>
+                   style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">more details</a>
                     </div>
-
                 </div>
-
-
-                <hr style="background-color:dimgray; height:4px;" class="mx-3 my-4 rounded rounded-3">
             </div>
-
         }
     }
 </div>
 
+
+@*
+/// <summary>
+/// The home page of the application
+///
+</summary>*@
+@code {
+    /// <summary>
+    /// The list of products that we display in this page
+    /// </summary>
+    private List<Product>? mProducts;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // TODO: add lazy loading
+
+        // Get the list of products from the server
+        var response = await apiManager.GetProductsAsync();
+
+        // If there was a response and it was successful
+        if(response is not null && response.Successful)
+
+            // Set the list of products
+            mProducts = response.Body;
+
+    }
+
+}
