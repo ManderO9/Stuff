@@ -89,6 +89,7 @@ p, h1, h2, h3, h4, h5, h6 {
     --primary: #eee3fa;
     --background: #160926;
     --secondary: #9036ff;
+    --accent: #25bcf7;
 }
 
 /* Make it dark theme by default */
