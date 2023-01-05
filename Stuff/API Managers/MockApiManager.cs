@@ -30,7 +30,7 @@ public class MockApiManager : IAPIManager
 				Price = 434,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "/Images/mount-kilimanjaro.jpg"
+				ImageLink = ApplicationRoutes.RoutePrefix + "/Images/mount-kilimanjaro.jpg"
             }
 		};
 	}
@@ -46,7 +46,7 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "/Images/red-tree.jpg"
+				ImageLink = ApplicationRoutes.RoutePrefix + "/Images/red-tree.jpg"
             },
 			  new Product()
 			{
@@ -56,7 +56,7 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "/Images/sky.jpg"
+				ImageLink = ApplicationRoutes.RoutePrefix + "/Images/sky.jpg"
             },
 			   new Product()
 			{
@@ -66,7 +66,7 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "/Images/lave.jpg"
+				ImageLink = ApplicationRoutes.RoutePrefix + "/Images/lave.jpg"
             },
 				new Product()
 			{
@@ -76,7 +76,7 @@ public class MockApiManager : IAPIManager
 				Price = 4,
 				ImageAltText = "some image",
 				PriceUnit = PriceUnit.Dollar,
-				ImageLink = "/Images/lave.jpg"
+				ImageLink = ApplicationRoutes.RoutePrefix + "/Images/lave.jpg"
 
             }
 		};
