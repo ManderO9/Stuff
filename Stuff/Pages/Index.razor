@@ -5,7 +5,7 @@
 @inject IAPIManager apiManager
 
 <div>
-
+    <div class="fixed-top">All Products,  suggested,  Search</div>
     @if(mProducts is null)
     {
         <div class="vw-100 vh-100 d-flex justify-content-center align-items-center">loading data...</div>
@@ -32,7 +32,7 @@
 
                     <!-- More details button -->
                     <div class="d-flex flex-row-reverse me-2 mt-2">
-                        <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.ProductDetailsPage + "/" + WebUtility.UrlEncode(product.Id))" class="btn"
+                        <a href="@(ApplicationRoutes.RoutePrefix + ApplicationRoutes.ProductDetailsPage + "/" + product.Id)" class="btn"
                    style="color:var(--secondary); background-color:transparent; text-shadow:3px 3px 10px var(--secondary);">more details</a>
                     </div>
                 </div>
